@@ -11,6 +11,7 @@ import javax.jdo.annotations.*;
  *The purpose of this class is to model a big data entity (company) for storage in the directory
  */
 @PersistenceCapable
+@Inheritance(customStrategy = "complete-table")
 public class Company {
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -139,8 +140,8 @@ public class Company {
 		this.primaryCategory = primaryCategory;
 	}
 	
-	public static Category createCategory(String type, String catDescription, String hierarchy){
-		return new Category(type, catDescription, hierarchy);
+	public static Category createCategory(String type, String catName, String hierarchy){
+		return new Category(type, catName, hierarchy);
 	}
 
 	/**
@@ -254,6 +255,7 @@ public class Company {
 				+ this.getAddress().getCity() + ", " + this.getAddress().getState() + " " + this.getAddress().getZipcode() + "\n<br/>"
 			    + "Category Info: \n<br/>"
 			    + "Primary Category: " + this.getPrimaryCategory().getCategoryName() + "\n<br/>"
+			    + "Primary Category Hierarchy: " + this.getPrimaryCategory().getCategoryHierarchy() + "\n<br/>"
 			    + "Secondary Category: " + this.getSecondaryCategory().getCategoryName() + "\n<br/>"
 			    + "Tertiary Category: " + this.getTertiaryCategory().getCategoryName() + "\n<br/>"
 			    + "Specialty Info:\n<br/>"

@@ -10,6 +10,7 @@ import com.google.appengine.api.datastore.Key;
  */
 
 @PersistenceCapable
+@Inheritance(customStrategy = "complete-table")
 public class CompanySpecialization {
 	
 	@PrimaryKey

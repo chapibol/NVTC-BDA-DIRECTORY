@@ -1,4 +1,7 @@
 package directoryModel;
+
+import javax.jdo.PersistenceManager;
+
 /**
  * 
  * @author Luis
@@ -39,7 +42,7 @@ public final class Utility {
 	}
 	
 	/**
-	 * Method to extract the last Category
+	 * Method to extract category's path
 	 * @param cats
 	 * @return
 	 */
@@ -63,5 +66,17 @@ public final class Utility {
 		}
 		return "";		
 	}
-		
+	
+	public static void saveCompanyToDatastore(Company c){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			//use a transaction to ensure that the question is saved to the datastore
+			pm.currentTransaction().begin();
+			pm.makePersistent(c);
+			pm.currentTransaction().commit();
+		}
+		finally {			
+			pm.close();
+		}
+	}
 }

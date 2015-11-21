@@ -11,6 +11,7 @@ import com.google.appengine.api.datastore.Key;
  *
  */
 @PersistenceCapable
+@Inheritance(customStrategy = "complete-table")
 public class Category {
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -26,7 +27,7 @@ public class Category {
 	private String categoryHierarchy;
 		
 	public Category(){
-		this("type", "description","level1-level2-level3-level4");
+		this("type", "categoryName","level1-level2-level3-level4");
 	}
 	public Category(String type, String catName, String hierarchy) {
 		this.type = type;

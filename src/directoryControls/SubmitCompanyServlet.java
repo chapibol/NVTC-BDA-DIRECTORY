@@ -21,7 +21,6 @@ public class SubmitCompanyServlet extends HttpServlet{
 		String companyName = request.getParameter("companyName");
 		String website = request.getParameter("website");
 		String telephone = request.getParameter("companyPhone");
-		System.out.println("check contents of telephone: " + telephone);
 		String description = request.getParameter("companyDescription");
 		String address1 = request.getParameter("companyAddress1");
 		String address2 = request.getParameter("companyAddress2");
@@ -57,23 +56,20 @@ public class SubmitCompanyServlet extends HttpServlet{
 		String [] terCats = {tertiaryCategoryDropdown,tertiaryCatSecondLevel,tertiaryCatThirdLevel,tertiaryCatFourthLevel};
 		
 		//create company object
-		Company comp = new Company();
+		Company comp = EntityCreator.createCompany(companyName,website,description);
 		//populate aCompany object with data from form
 		PointOfContact poc = new PointOfContact();
 		poc.setFirstName(firstName);
 		poc.setLastName(lastName);
 		poc.setEmail(email);
 		comp.setPointOfContact(poc);
-		comp.setName(companyName);
-		comp.setWebsite(website);
 		comp.setTelephone(telephone);
-		comp.setDescription(description);
 		Address address = new Address(address1,city,state,zipcode);
 		comp.setAddress(address);
 		//build category object with 3 params, type, category name, hierarchy
 		Category primaryCategory = Company.createCategory("Primary",Utility.getCategoryName(primCats),Utility.buildCategoryHierarchy(primCats));
-		Category secondaryCategory = Company.createCategory("Primary",Utility.getCategoryName(secCats),Utility.buildCategoryHierarchy(secCats));
-		Category tertiaryCategory = Company.createCategory("Primary",Utility.getCategoryName(terCats),Utility.buildCategoryHierarchy(terCats));
+		Category secondaryCategory = Company.createCategory("Secondary",Utility.getCategoryName(secCats),Utility.buildCategoryHierarchy(secCats));
+		Category tertiaryCategory = Company.createCategory("Tertiary",Utility.getCategoryName(terCats),Utility.buildCategoryHierarchy(terCats));
 		//store categories to company object (comp)
 		comp.setPrimaryCategory(primaryCategory);
 		comp.setSecondaryCategory(secondaryCategory);
@@ -82,8 +78,11 @@ public class SubmitCompanyServlet extends HttpServlet{
 		comp.setSpecialty1(specialty1);
 		comp.setSpecialty2(specialty2);
 		comp.setSpecialty3(specialty3);
-		System.out.println(comp.toString());
 		//store company object into the datastore and redirect to Successful Submission Screen
+		
+		//save created company to the datastore
+		Utility.saveCompanyToDatastore(comp);
+		
 		response.setContentType("text/html");
 		response.getWriter().println(comp.toString());
 		
