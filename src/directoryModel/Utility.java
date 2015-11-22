@@ -1,6 +1,10 @@
 package directoryModel;
 
+
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 
 /**
  * 
@@ -67,6 +71,10 @@ public final class Utility {
 		return "";		
 	}
 	
+	/**
+	 * Method to save a company object to the datastore.
+	 * @param c
+	 */
 	public static void saveCompanyToDatastore(Company c){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
@@ -78,5 +86,32 @@ public final class Utility {
 		finally {			
 			pm.close();
 		}
+	}
+	
+	/**
+	 * Method to retrieve a single company from the data store.
+	 * @param companyId
+	 * @return
+	 */
+	public static Company getCompanyById(long companyId){
+		//will have to change this to just search datastore for single question not all.
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Company c = pm.getObjectById(Company.class, companyId);
+		return c;
+	}
+	
+	public static List<Company> getAllCompanies() {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		List<Company> results = null;
+		try {			
+			Query q = pm.newQuery(Company.class);	
+			results = (List<Company>)q.execute();
+		} catch (Exception e) {
+			//nothing
+		}
+		finally{
+			pm.close();
+		}
+		return results;
 	}
 }

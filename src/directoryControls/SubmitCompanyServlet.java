@@ -4,10 +4,8 @@
 package directoryControls;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 
 import javax.servlet.http.*;
-
 import directoryModel.*;
 
 public class SubmitCompanyServlet extends HttpServlet{
