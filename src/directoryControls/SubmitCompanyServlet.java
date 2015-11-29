@@ -84,42 +84,7 @@ public class SubmitCompanyServlet extends HttpServlet{
 		response.setContentType("text/html");
 		response.getWriter().println(comp.toString());
 		
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-		
-		
-		
-		
-		
-		
 //    	PointOfContact poc = EntityCreator.createPointOfContact(firstName, lastName, email);
 //		Company aCompany = EntityCreator.createCompany(companyName, website, description);
 //		aCompany.setTelephone(telephone);
