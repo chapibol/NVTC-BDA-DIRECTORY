@@ -51,7 +51,8 @@ public class Company {
 	}
 
 	/**
-	 * @return the name
+	 * 
+	 * @return name of the company
 	 */
 	public String getName() {
 		return name;
@@ -257,7 +258,9 @@ public class Company {
 			    + "Primary Category: " + this.getPrimaryCategory().getCategoryName() + "\n<br/>"
 			    + "Primary Category Hierarchy: " + this.getPrimaryCategory().getCategoryHierarchy() + "\n<br/>"
 			    + "Secondary Category: " + this.getSecondaryCategory().getCategoryName() + "\n<br/>"
+			    + "Secondary Category Hierarchy: " + this.getSecondaryCategory().getCategoryHierarchy() + "\n<br/>"
 			    + "Tertiary Category: " + this.getTertiaryCategory().getCategoryName() + "\n<br/>"
+			    + "Tertiary Category Hierarchy: " + this.getTertiaryCategory().getCategoryHierarchy() + "\n<br/>"
 			    + "Specialty Info:\n<br/>"
 			    + "Specialty 1: " + this.getSpecialty1() + "\n<br/>"
 			    + "Specialty 2: " + this.getSpecialty2() + "\n<br/>"

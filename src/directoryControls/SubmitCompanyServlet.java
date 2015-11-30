@@ -6,10 +6,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.*;
+
+import com.google.appengine.api.search.Document;
+
 import directoryModel.*;
 
 public class SubmitCompanyServlet extends HttpServlet{
-
+	
+	final String ALL_COMPANIES_INDEX = "AllCompanies";
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws IOException{
 		String firstName = request.getParameter("fname");
 		String lastName = request.getParameter("lname");
@@ -81,42 +86,14 @@ public class SubmitCompanyServlet extends HttpServlet{
 		//save created company to the datastore
 		Utility.saveCompanyToDatastore(comp);
 		
+		//create document for search index
+		Document doc = Utility.createCompanyDocument(comp);
+		//add doc to AllCompanies Index
+		Utility.IndexADocument(ALL_COMPANIES_INDEX, doc);		
+		
 		response.setContentType("text/html");
 		response.getWriter().println(comp.toString());
 		
-
-//    	PointOfContact poc = EntityCreator.createPointOfContact(firstName, lastName, email);
-//		Company aCompany = EntityCreator.createCompany(companyName, website, description);
-//		aCompany.setTelephone(telephone);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//while(!data.isEmpty()){
-			//System.out.println(data.get("companyName"));
-		//}
-		
-		
-//		+ "\nPrimary Cat: " +primaryCategory+
-//				"\nPCat Second Level:" + primaryCategorySecond + "\nPCat Third: " + primaryCategoryThird);
-	
-		/*String username = request.getParameter("username");
-		String answerText = request.getParameter("answer-text");
-		String answerCode = request.getParameter("answer-code");
-		//Luis, changed questionId to long because that is the datatype the datastore uses.
-		long questionId = Long.parseLong(request.getParameter("qid"));
-		//create the answer
-		Answer a = Answer.createAnswer(username, answerText, answerCode);
-		//@Luis: update the question with the answer specified, this was done as a single static method so that only one instance of the persistence manager is used.
-		Question.updateQuestionWithAnswer(questionId, a);
-		//after saving the answer to the question, go back to the view .jsp
-		response.sendRedirect("/view.jsp?qid=" + questionId);*/		
 	}
 
 }

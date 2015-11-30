@@ -6,6 +6,14 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import com.google.appengine.api.search.Document;
+import com.google.appengine.api.search.Field;
+import com.google.appengine.api.search.Index;
+import com.google.appengine.api.search.IndexSpec;
+import com.google.appengine.api.search.SearchServiceFactory;
+import com.google.appengine.api.search.PutException;
+import com.google.appengine.api.search.StatusCode;
+
 /**
  * 
  * @author Luis
@@ -86,6 +94,64 @@ public final class Utility {
 		finally {			
 			pm.close();
 		}
+	}
+	
+	/**
+	 * Method to create a search API document for an single company
+	 * @param c
+	 * @return Document
+	 */
+	public static Document createCompanyDocument(Company c){
+		long myDocId = c.getKey().getId();
+		Document doc = Document.newBuilder().setId(""+myDocId)
+			.addField(Field.newBuilder().setName("companyName")
+					.setAtom(c.getName()))
+			.addField(Field.newBuilder().setName("telephone")
+					.setAtom(c.getTelephone()))
+			.addField(Field.newBuilder().setName("companyDescription")
+					.setText(c.getDescription()))
+			.addField(Field.newBuilder().setName("primaryCategory")
+					.setAtom(c.getPrimaryCategory().getCategoryName()))
+			.addField(Field.newBuilder().setName("secondaryCategory")
+					.setAtom(c.getSecondaryCategory().getCategoryName()))
+			.addField(Field.newBuilder().setName("tertiaryCategory")
+					.setAtom(c.getTertiaryCategory().getCategoryName()))
+			.addField(Field.newBuilder().setName("primaryCategoryHierarchy")
+					.setText(c.getPrimaryCategory().getCategoryHierarchy()))
+			.addField(Field.newBuilder().setName("secondaryCategoryHierarchy")
+					.setText(c.getSecondaryCategory().getCategoryHierarchy()))
+			.addField(Field.newBuilder().setName("tertiaryCategoryHierarchy")
+					.setText(c.getTertiaryCategory().getCategoryHierarchy()))
+			.addField(Field.newBuilder().setName("specialty1")
+					.setText(c.getSpecialty1()))
+			.addField(Field.newBuilder().setName("specialty2")
+					.setText(c.getSpecialty2()))
+			.addField(Field.newBuilder().setName("specialty3")
+					.setText(c.getSpecialty3()))
+			.addField(Field.newBuilder().setName("pocName")
+					.setText(c.getPointOfContact().getFullName())).build();
+		
+		return doc;
+	}
+	
+	/**
+	 * Method to add a document to the specified index. if the index already exists then no new index will be created.
+	 * 
+	 * @param indexName
+	 * @param document
+	 */
+	public static void IndexADocument(String indexName, Document document) {
+	    IndexSpec indexSpec = IndexSpec.newBuilder().setName(indexName).build(); 
+	    Index index = SearchServiceFactory.getSearchService().getIndex(indexSpec);
+	    
+	    try {
+	        index.put(document);
+	    } catch (PutException e) {
+	        if (StatusCode.TRANSIENT_ERROR.equals(e.getOperationResult().getCode())) {
+	            // retry putting the document
+	        	index.put(document);
+	        }
+	    }
 	}
 	
 	/**

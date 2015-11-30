@@ -37,7 +37,7 @@ public class Address {
 		this.streetName = streetName;
 		this.city = city;
 		this.state = state;
-		this.stateCode = "VA";
+		this.stateCode = state;
 		this.zipcode = zipcode;
 	}
 
@@ -118,11 +118,8 @@ public class Address {
 		return key;
 	}
 
-	/**
-	 * @return the numberOfAddresses
-	 */
-	
+		
 	public String toString(){
-		return "This is the Address toStirng. implement pending.";
+		return "Address to String";
 	}
 }

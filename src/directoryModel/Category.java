@@ -26,14 +26,16 @@ public class Category {
 	@Persistent
 	private String categoryHierarchy;
 		
-	public Category(){
-		this("type", "categoryName","level1-level2-level3-level4");
-	}
 	public Category(String type, String catName, String hierarchy) {
 		this.type = type;
 		this.categoryName = catName;
 		this.categoryHierarchy = hierarchy;
 	}
+	
+	public Category(){
+		this("type", "categoryName","level1-level2-level3-level4");
+	}
+	
 	/**
 	 * @return the type
 	 */
@@ -79,7 +81,9 @@ public class Category {
 	}
 	
 	public String toString(){
-		return "Category Default String";
+		return "Category Type: " + this.getType() + "\n"
+				+ "Category Name: " + this.getCategoryName() + "\n"
+						+ "Category Hierarchy: " + this.getCategoryHierarchy();
 	}
 
 }

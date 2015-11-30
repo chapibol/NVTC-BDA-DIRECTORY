@@ -88,6 +88,10 @@ public class PointOfContact {
 		return "POC toString default";
 	}
 	
+	public String getFullName(){
+		return this.getFirstName() + " " + this.getLastName();
+	}
+	
 	
 	
 }
