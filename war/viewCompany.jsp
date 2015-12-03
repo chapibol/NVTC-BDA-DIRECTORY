@@ -67,7 +67,7 @@
 						<div class="row">
 							<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
 								<%
-									Company c = Utility.getCompanyById(Long.parseLong(request.getParameter("cId")));
+									Company c = (Company)request.getAttribute("aCompany");
 									PointOfContact poc = c.getPointOfContact();
 									Address ad = c.getAddress();
 								%>

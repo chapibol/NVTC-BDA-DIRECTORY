@@ -5,6 +5,7 @@ package directoryControls;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 import com.google.appengine.api.search.Document;
@@ -93,9 +94,12 @@ public class SubmitCompanyServlet extends HttpServlet{
 		//add doc to AllCompanies Index
 		Utility.IndexADocument(ALL_COMPANIES_INDEX, doc);
 		
-		response.setContentType("text/html");
-		response.getWriter().println(comp.toString());
-		
+		 request.setAttribute("submittedCompanyName", comp.getName());//
+		 request.setAttribute("companyId", comp.getKey().getId());//send the id also to form a link
+		 try {
+			getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
+		} catch (ServletException e) {			
+			e.printStackTrace();
+		}		
 	}
-
 }

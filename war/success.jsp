@@ -20,9 +20,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-	
-</script>
+<%String compName = (String)request.getAttribute("submittedCompanyName");
+  long compId = (Long)request.getAttribute("companyId");
+%>
 </head>
 
 
@@ -65,81 +65,17 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
-								<%
-									Company c = Utility.getCompanyById(Long.parseLong(request.getParameter("cId")));
-									PointOfContact poc = c.getPointOfContact();
-									Address ad = c.getAddress();
-								%>
-								<div id="companyName" class="text-center">
-									<h1><%=c.getName()%></h1>
+							<div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-sm-offset-2">
+								<div class="panel panel-success">
+									<div class="panel-heading text-center">
+									    <h3 class="panel-title">Success!</h3>
+									</div>
+								  <div class="panel-body text-center">								  
+								    <p class="text-info">Company: <a title="Click to view company details" href="/RetrieveCompanyServlet?cId=<%= compId %>"><%=compName%></a> has been submitted!</p>
+								  </div>
 								</div>
-								<hr>
-								<br />
-
-								<h4 class="text-center">Point of Contact Information</h4>
-								<div class="form-group" id="pointOfContact">
-									<p class="text-center">
-										Name:
-										<%=poc.getFirstName() + " " + poc.getLastName()%></p>
-									<p class="text-center">
-										E-Mail:
-										<%=poc.getEmail()%></p>
-								</div>
-								<hr>
-
-								<h4 class="text-center">Company Information</h4>
-								<div class="form-group" id="companyInformation">
-									<p class="text-center">this div is for printing the Company
-										Info</p>
-								</div>
-								<!--Div form group containing Compnay Info-->
-								<hr />
-
-
-
-								<!-- First -->
-								<h4 class="text-center">Company Primary Sources of Revenue</h4>
-								<div class="row" id="primaryCategory">
-									<p class="text-center">this div is for printing the primary</p>
-								</div>
-								<!--End Row enclosing primary categories-->
-								<hr />
-
-
-								<!-- Second -->
-								<h4 class="text-center">Company Secondary Sources of
-									Revenue</h4>
-								<div class="row" id="secondaryCategory">
-									<p class="text-center">this div is for printing the
-										secondary</p>
-								</div>
-								<!--End secondary category row-->
-								<hr />
-
-
-
-								<!-- Third -->
-								<h4 class="text-center">Company Tertiary Sources of
-									Revenue</h4>
-								<div class="row">
-									<p class="text-center">this div is for printing the company
-										tertiary revenue</p>
-								</div>
-								<!--End tertiary category row-->
-								<hr />
-
-
-								<!-- Company Specialties -->
-								<h4 class="text-center">Specializations</h4>
-								<div class="form-group" id="specializations">
-									<p class="text-center">this div is for printing the company
-										specializations</p>
-								</div>
-								<hr />
-
-							</div><!--End of column that controls input size col-md-10 ...-->
-						</div><!--row div within panel-body-->
+							</div>
+						</div>
 
 					</div><!--end panel body-->
 				</div><!--End Panel Default div-->
