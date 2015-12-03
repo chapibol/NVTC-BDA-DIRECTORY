@@ -20,6 +20,8 @@ public class Address {
 	
 	@Persistent private String streetName;
 	
+	@Persistent private String streetName2;
+
 	@Persistent private String city;
 	
 	@Persistent private String state;
@@ -53,6 +55,14 @@ public class Address {
 	 */
 	public void setStreetName(String streetName) {
 		this.streetName = streetName;
+	}
+	
+	public String getStreetName2() {
+		return streetName2;
+	}
+
+	public void setStreetName2(String streetName2) {
+		this.streetName2 = streetName2;
 	}
 
 	/**

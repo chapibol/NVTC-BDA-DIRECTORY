@@ -1,6 +1,7 @@
 package directoryModel;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -8,6 +9,8 @@ import javax.jdo.Query;
 
 import com.google.appengine.api.search.Document;
 import com.google.appengine.api.search.Field;
+import com.google.appengine.api.search.GetRequest;
+import com.google.appengine.api.search.GetResponse;
 import com.google.appengine.api.search.Index;
 import com.google.appengine.api.search.IndexSpec;
 import com.google.appengine.api.search.SearchServiceFactory;
@@ -17,8 +20,7 @@ import com.google.appengine.api.search.StatusCode;
 /**
  * 
  * @author Luis
- *This class will hold static methods that can be used by entity classes to validate
- *their inputs.
+ *The purpose of this class is to provide a toolbox of methods to be uesd by servlets and Data definition classes alike
  */
 public final class Utility {	
 	
@@ -69,7 +71,11 @@ public final class Utility {
 		output = output.substring(0,output.length() -1);
 	 return output;
 	}
-	
+	/**
+	 * Gets the category name from an array of categories. The last non null element in the array is the category name
+	 * @param cats array of categories
+	 * @return the category or an empty space ""
+	 */
 	public static String getCategoryName(String [] cats){
 		for(int i = cats.length-1; i >= 0; i--){
 			if(cats[i] != null){
@@ -135,7 +141,7 @@ public final class Utility {
 	}
 	
 	/**
-	 * Method to add a document to the specified index. if the index already exists then no new index will be created.
+	 * Method to add a document to the specified Index. if the Index already exists then no new index will be created.
 	 * 
 	 * @param indexName
 	 * @param document
@@ -165,7 +171,10 @@ public final class Utility {
 		Company c = pm.getObjectById(Company.class, companyId);
 		return c;
 	}
-	
+	/**
+	 * Gets all of the company entities stored in the datastore
+	 * @return
+	 */
 	public static List<Company> getAllCompanies() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Company> results = null;
@@ -179,5 +188,28 @@ public final class Utility {
 			pm.close();
 		}
 		return results;
+	}
+	
+	public static void deleteAllDocsInIndex(String indexName){
+		IndexSpec indexSpec = IndexSpec.newBuilder().setName(indexName).build(); 
+	    Index index = SearchServiceFactory.getSearchService().getIndex(indexSpec);
+		try {
+		    // looping because getRange by default returns up to 100 documents at a time
+		    while (true) {
+		        List<String> docIds = new ArrayList<String>();
+		        // Return a set of doc_ids.
+		        GetRequest request = GetRequest.newBuilder().setReturningIdsOnly(true).build();
+		        GetResponse<Document> response = index.getRange(request);
+		        if (response.getResults().isEmpty()) {
+		            break;
+		        }
+		        for (Document doc : response) {
+		            docIds.add(doc.getId());
+		        }
+		        index.delete(docIds);
+		    }
+		} catch (RuntimeException e) {
+		    System.out.print("Exception Has Occurred");
+		}
 	}
 }

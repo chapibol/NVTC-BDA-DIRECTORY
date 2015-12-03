@@ -20,23 +20,16 @@ public class Company {
 	@Persistent private String name;	
 	@Persistent private String website;
 	@Persistent private String telephone;
-	@Persistent private String description;
-	
-	@Persistent	private Address companyAddress;
-	
-	@Persistent private Category primaryCategory;
-	
-	@Persistent private Category secondaryCategory;
-	
-	@Persistent private Category tertiaryCategory;
-	
-	@Persistent private PointOfContact poc;
-	
+	@Persistent private String description;	
+	@Persistent	private Address companyAddress;	
+	@Persistent private Category primaryCategory;	
+	@Persistent private Category secondaryCategory;	
+	@Persistent private Category tertiaryCategory;	
+	@Persistent private PointOfContact poc;	
 	@Persistent private String specialty1;
 	@Persistent private String specialty2;
 	@Persistent private String specialty3;
-	
-	
+		
 	
 	public Company(){
 		this("company name", "www.example.com", "a description");

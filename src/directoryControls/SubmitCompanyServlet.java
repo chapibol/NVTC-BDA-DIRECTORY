@@ -57,7 +57,8 @@ public class SubmitCompanyServlet extends HttpServlet{
 		String [] primCats = {primaryCategoryDropdown,primarySecondLevel,primaryThirdLevel,primaryFourthLevel};
 		String [] secCats = {secondaryCategoryDropdown,secondaryCatSecondLevel,secondaryCatThirdLevel,secondaryCatFourthLevel};
 		String [] terCats = {tertiaryCategoryDropdown,tertiaryCatSecondLevel,tertiaryCatThirdLevel,tertiaryCatFourthLevel};
-		
+		//append http:// to website
+		website = "http://" + website;
 		//create company object
 		Company comp = EntityCreator.createCompany(companyName,website,description);
 		//populate aCompany object with data from form
@@ -68,6 +69,7 @@ public class SubmitCompanyServlet extends HttpServlet{
 		comp.setPointOfContact(poc);
 		comp.setTelephone(telephone);
 		Address address = new Address(address1,city,state,zipcode);
+		address.setStreetName2(address2);//set the second line of address
 		comp.setAddress(address);
 		//build category object with 3 params, type, category name, hierarchy
 		Category primaryCategory = Company.createCategory("Primary",Utility.getCategoryName(primCats),Utility.buildCategoryHierarchy(primCats));
@@ -89,7 +91,7 @@ public class SubmitCompanyServlet extends HttpServlet{
 		//create document for search index
 		Document doc = Utility.createCompanyDocument(comp);
 		//add doc to AllCompanies Index
-		Utility.IndexADocument(ALL_COMPANIES_INDEX, doc);		
+		Utility.IndexADocument(ALL_COMPANIES_INDEX, doc);
 		
 		response.setContentType("text/html");
 		response.getWriter().println(comp.toString());
