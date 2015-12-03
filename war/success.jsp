@@ -61,9 +61,7 @@
 	<!-- Retrieve object for later displaying of its info -->
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
-			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1 "><!-- Limits the  -->
-				<div class="panel panel-default">
-					<div class="panel-body">
+			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1 "><!-- Limits the  -->				
 						<div class="row">
 							<div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-sm-offset-2">
 								<div class="panel panel-success">
@@ -76,9 +74,6 @@
 								</div>
 							</div>
 						</div>
-
-					</div><!--end panel body-->
-				</div><!--End Panel Default div-->
 			</div><!--End of 10 column div with 1 offset-->
 		</div><!--End Row within container(after navbar)-->
 	</div><!--End container that holds all contents in between navbar and footer-->
