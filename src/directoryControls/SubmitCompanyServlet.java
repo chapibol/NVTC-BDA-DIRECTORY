@@ -17,18 +17,18 @@ public class SubmitCompanyServlet extends HttpServlet{
 	final String ALL_COMPANIES_INDEX = "AllCompanies";
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)throws IOException{
-		String firstName = request.getParameter("fname");
-		String lastName = request.getParameter("lname");
-		String email = request.getParameter("email");
+		String firstName = request.getParameter("fname").trim();
+		String lastName = request.getParameter("lname").trim();
+		String email = request.getParameter("email").trim();
 		
 		//Extract Company info
-		String companyName = request.getParameter("companyName");
-		String website = request.getParameter("website");
-		String telephone = request.getParameter("companyPhone");
-		String description = request.getParameter("companyDescription");
-		String address1 = request.getParameter("companyAddress1");
-		String address2 = request.getParameter("companyAddress2");
-		String city = request.getParameter("companyCity");
+		String companyName = request.getParameter("companyName").trim();
+		String website = request.getParameter("website").trim();
+		String telephone = request.getParameter("companyPhone").trim();
+		String description = request.getParameter("companyDescription").trim();
+		String address1 = request.getParameter("companyAddress1").trim();
+		String address2 = request.getParameter("companyAddress2").trim();
+		String city = request.getParameter("companyCity").trim();
 		String state = request.getParameter("companyState");
 		String zipcode = "" + request.getParameter("companyZip");//convert zipcode to string
 		
@@ -51,9 +51,9 @@ public class SubmitCompanyServlet extends HttpServlet{
 		String tertiaryCatFourthLevel = request.getParameter("tertiaryCat4thLevel");		
 		
 		//extract company specialties
-		String specialty1 = request.getParameter("specialty1");
-		String specialty2 = request.getParameter("specialty2");
-		String specialty3 = request.getParameter("specialty3");
+		String specialty1 = request.getParameter("specialty1").trim();
+		String specialty2 = request.getParameter("specialty2").trim();
+		String specialty3 = request.getParameter("specialty3").trim();
 		
 		String [] primCats = {primaryCategoryDropdown,primarySecondLevel,primaryThirdLevel,primaryFourthLevel};
 		String [] secCats = {secondaryCategoryDropdown,secondaryCatSecondLevel,secondaryCatThirdLevel,secondaryCatFourthLevel};
@@ -93,9 +93,8 @@ public class SubmitCompanyServlet extends HttpServlet{
 		Document doc = SearchUtility.createCompanyDocument(comp);
 		//add doc to AllCompanies Index
 		SearchUtility.IndexADocument(ALL_COMPANIES_INDEX, doc);
-		System.out.println("Doc ID: " + doc.getId() + "\n"
-				+ "Entity ID: " + comp.getKey().getId());
-		
+//		System.out.println("Doc ID: " + doc.getId() + "\n"//testing code
+//				+ "Entity ID: " + comp.getKey().getId());
 		 request.setAttribute("submittedCompanyName", comp.getName());//
 		 request.setAttribute("companyId", comp.getKey().getId());//send the id also to form a link
 		 try {

@@ -40,8 +40,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">NVTC - Big Data
-					Directory</a>
+				<a class="navbar-brand" href="index.html">NVTC - Big Data Directory</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,31 +48,25 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Submit Company</a></li>
-					<li class="active"><a href="browseCompanies.html">Browse<span
-							class="sr-only">(current)</span></a></li>
+					<li><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a></li>
 				</ul>
 
-				<form action="/SearchServlet" class="navbar-form navbar-right"
-					role="search" method="post">
+				<form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" id="searchBox"
 							name="searchQuery" placeholder="Search the directory">
 					</div>
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
-	<!--End NavBar-->
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav><!--End NavBar-->
 	<%
 		//retrieve results from servlet
 		Results<ScoredDocument> results = (Results<ScoredDocument>)request.getAttribute("searchResults");
 		long numberFound = results.getNumberFound();
 		int numberReturned = results.getNumberReturned();//total number returned
 	%>
-
 
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
@@ -99,11 +92,11 @@
 									String website = d.getOnlyField("website").getText();
 							%>	
 								<div class="row">
-									<div class="col-md-8 col-sm-8 col-xs-10 col-md-offset-2 col-md-offset-2 col-md-offset-1">
+									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-md-offset-1 col-md-offset-1">
 										<h3 class="searchHeading">
 											<a href="/RetrieveCompanyServlet?cId=<%=id%>"><%=companyName%></a>
 										</h3>
-										<small class="searchUrl"><a href=<%=website%>><%=website%></a></small><br/>
+										<small><a class="searchUrl" href=<%=website%>><%=website%></a></small><br/>
 										<p><%=descriptionSnippet%><p>
 									</div>								
 								</div>

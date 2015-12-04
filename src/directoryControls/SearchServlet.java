@@ -21,13 +21,13 @@ public class SearchServlet extends HttpServlet {
 		String queryString = request.getParameter("searchQuery");
 		Results<ScoredDocument> results = SearchUtility.searchFor(queryString, ALL_COMPANIES_INDEX);	
 		//testing code.
-		for(ScoredDocument d: results){		
-			
-			System.out.println("Doc Id: " + d.getId() + "\n"
-					+ "Company Name: " + d.getOnlyField("companyName").getAtom() + "\n"
-							+ "Company Description: " + Utility.toSnippet(d.getOnlyField("companyDescription").getText()));
-			System.out.println();
-		}
+//		for(ScoredDocument d: results){		
+//			
+//			System.out.println("Doc Id: " + d.getId() + "\n"
+//					+ "Company Name: " + d.getOnlyField("companyName").getAtom() + "\n"
+//							+ "Company Description: " + Utility.toSnippet(d.getOnlyField("companyDescription").getText()));
+//			System.out.println();
+//		}
 		//send results to broseCompanies.jsp in order to be displayed
 		request.setAttribute("searchResults", results);//send the id also to form a link
 		 try {

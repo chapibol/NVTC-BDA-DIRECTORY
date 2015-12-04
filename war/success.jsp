@@ -42,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Submit Company</a></li>
-					<li class="active"><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a></li>
+					<li><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a></li>
 				</ul>
 
 				<form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
@@ -61,9 +61,9 @@
 	<!-- Retrieve object for later displaying of its info -->
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
-			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1 "><!-- Limits the  -->				
+			<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 "><!-- Limits the  -->				
 						<div class="row">
-							<div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-sm-offset-2">
+							<div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
 								<div class="panel panel-success">
 									<div class="panel-heading text-center">
 									    <h3 class="panel-title">Success!</h3>
