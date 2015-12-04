@@ -47,7 +47,7 @@
 
 				<form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" id="searchBox" placeholder="Search the directory"/>
+						<input type="text" class="form-control" id="searchBox" name="searchQuery" placeholder="Search the directory"/>
 					</div>
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
@@ -68,9 +68,9 @@
 									<div class="panel-heading text-center">
 									    <h3 class="panel-title">Success!</h3>
 									</div>
-								  <div class="panel-body text-center">								  
-								    <p class="text-info">Company: <a title="Click to view company details" href="/RetrieveCompanyServlet?cId=<%= compId %>"><%=compName%></a> has been submitted!</p>
-								  </div>
+								   <div class="panel-body text-center">								  
+								     <p class="text-info">Company: <a title="Click to view company details" href="/RetrieveCompanyServlet?cId=<%= compId %>"><%=compName%></a> has been submitted!</p>
+								   </div>
 								</div>
 							</div>
 						</div>

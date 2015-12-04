@@ -4,3 +4,11 @@
 body { 
 	padding-top: 70px; 
 }
+
+.searchHeading {
+	color: blue;	
+}
+
+.searchUrl {
+	color: green;
+}

@@ -90,9 +90,11 @@ public class SubmitCompanyServlet extends HttpServlet{
 		Utility.saveCompanyToDatastore(comp);
 		
 		//create document for search index
-		Document doc = Utility.createCompanyDocument(comp);
+		Document doc = SearchUtility.createCompanyDocument(comp);
 		//add doc to AllCompanies Index
-		Utility.IndexADocument(ALL_COMPANIES_INDEX, doc);
+		SearchUtility.IndexADocument(ALL_COMPANIES_INDEX, doc);
+		System.out.println("Doc ID: " + doc.getId() + "\n"
+				+ "Entity ID: " + comp.getKey().getId());
 		
 		 request.setAttribute("submittedCompanyName", comp.getName());//
 		 request.setAttribute("companyId", comp.getKey().getId());//send the id also to form a link

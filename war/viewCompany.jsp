@@ -47,7 +47,7 @@
 
 				<form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" id="searchBox" placeholder="Search the directory"/>
+						<input type="text" class="form-control" id="searchBox" name="searchQuery" placeholder="Search the directory"/>
 					</div>
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
