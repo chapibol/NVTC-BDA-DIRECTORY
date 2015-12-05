@@ -1,0 +1,15 @@
+*.classpath
+.project
+*.prefs
+*.properties
+src/META-INF/jdoconfig.xml
+*.jar
+*.bin
+war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
+src/META-INF/persistence.xml
+war/WEB-INF/appengine-generated/indexes/bnZ0Yy1kaXJlY3Rvcnk/QWxsQ29tcGFuaWVz..P/segments.gen
+war/WEB-INF/appengine-generated/indexes/bnZ0Yy1kaXJlY3Rvcnk/QWxsQ29tcGFuaWVz..P/_1.cfs
+war/WEB-INF/appengine-generated/indexes/bnZ0Yy1kaXJlY3Rvcnk/QWxsQ29tcGFuaWVz..P/segments_3
+*.cfs
+war/WEB-INF/appengine-generated/indexes/bnZ0Yy1kaXJlY3Rvcnk/QWxsQ29tcGFuaWVz..P/write.lock
+.settings/org.eclipse.wst.common.project.facet.core.xml
