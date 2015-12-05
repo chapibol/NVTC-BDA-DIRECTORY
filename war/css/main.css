@@ -5,8 +5,17 @@ body {
 	padding-top: 70px; 
 }
 
+.searchHeading a {
+	color: #1020d0;
+	font-size: 18px;
+}
 .searchHeading {
-	color: blue;	
+	padding-bottom:0;
+	margin-bottom:0;
+}
+
+.searchHeading a:visited {
+	color: #600090;
 }
 
 .searchUrl {

@@ -1,4 +1,7 @@
 package directoryModel;
+
+import com.google.appengine.api.datastore.Text;
+
 /**
  * 
  * @author Luis
@@ -14,18 +17,17 @@ public class EntityCreator {
 	 * @param description
 	 * @return Company object or null if unsuccessful.
 	 */
-	public static Company createCompany(String name, String website, String description){
-		if(Utility.isStringDataValid(name) && Utility.isStringDataValid(website) && Utility.isStringDataValid(description)){
+	public static Company createCompany(String name, String website, Text description){
+		if(Utility.isStringDataValid(name) && Utility.isStringDataValid(website) && description.getValue().length() > 0){
 			return new Company(name, website, description);
 		}else{
 			return null;
 		}
 	}
 	
-	public static Address createAddress(String streetName, String city, String state, String zipcode){
-		if(Utility.isStringDataValid(streetName) && Utility.isStringDataValid(city) 
-				&& Utility.isStringDataValid(state) && Utility.isStringDataValid(zipcode)){
-			return new Address(streetName, city, state, zipcode);
+	public static Address createAddress(String streetName,String streetName2, String city, String state, String zipcode){
+		if(Utility.isStringDataValid(streetName) && Utility.isStringDataValid(city)	&& Utility.isStringDataValid(state) && Utility.isStringDataValid(zipcode)){
+			return new Address(streetName,streetName2, city, state, zipcode);
 		}else{
 			return null;
 		}		

@@ -77,8 +77,8 @@
 							<%
 							if (numberFound == 0 || numberReturned == 0) {//if no reults display error message
 							%>
-									<div class="col-md-8 col-sm-8 col-xs-10 col-md-offset-2 col-md-offset-2 col-md-offset-1">
-										<div class="alert alert-danger" role="alert">
+									<div class="col-md-8 col-sm-8 col-xs-10 col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
+										<div class="alert alert-danger text-center" role="alert">
 											<p>No results found try again</p>										
 										</div>																		
 									</div>	
@@ -94,7 +94,7 @@
 								<div class="row">
 									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-md-offset-1 col-md-offset-1">
 										<h3 class="searchHeading">
-											<a href="/RetrieveCompanyServlet?cId=<%=id%>"><%=companyName%></a>
+											<strong><a href="/RetrieveCompanyServlet?cId=<%=id%>"><%=companyName%></a></strong>
 										</h3>
 										<small><a class="searchUrl" href=<%=website%>><%=website%></a></small><br/>
 										<p><%=descriptionSnippet%><p>

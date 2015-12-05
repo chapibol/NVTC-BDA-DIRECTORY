@@ -32,7 +32,7 @@ public class SearchUtility {
 			.addField(Field.newBuilder().setName("telephone")
 					.setAtom(c.getTelephone()))
 			.addField(Field.newBuilder().setName("companyDescription")
-					.setText(c.getDescription()))
+					.setText(c.getDescription().getValue()))
 			.addField(Field.newBuilder().setName("primaryCategory")
 					.setAtom(c.getPrimaryCategory().getCategoryName()))
 			.addField(Field.newBuilder().setName("secondaryCategory")
@@ -85,7 +85,7 @@ public class SearchUtility {
 	    Index index = SearchServiceFactory.getSearchService().getIndex(indexSpec);
 		try {
 		    // looping because getRange by default returns up to 100 documents at a time
-		    while (true) {
+		    while(true) {
 		        List<String> docIds = new ArrayList<String>();
 		        // Return a set of doc_ids.
 		        GetRequest request = GetRequest.newBuilder().setReturningIdsOnly(true).build();
@@ -99,12 +99,17 @@ public class SearchUtility {
 		        index.delete(docIds);
 		    }
 		} catch (RuntimeException e) {
-		    System.out.print("Exception Has Occurred");
+		    System.out.print("Exception Has Occurred at deleteAllDocsInIndex");
 		}
-	}
+	}	
 	
-	public static  Results<ScoredDocument> searchFor(String queryStr, String indexName){
-		
+	/**
+	 * Performs a global search of indexed focuemtns for specified query and index name
+	 * @param queryStr
+	 * @param indexName
+	 * @return
+	 */
+	public static  Results<ScoredDocument> searchFor(String queryStr, String indexName){		
 		// Build the QueryOptions
 	    QueryOptions options = QueryOptions.newBuilder()
 	        .setLimit(40)

@@ -69,7 +69,7 @@
 									    <h3 class="panel-title">Success!</h3>
 									</div>
 								   <div class="panel-body text-center">								  
-								     <p class="text-info">Company: <a title="Click to view company details" href="/RetrieveCompanyServlet?cId=<%= compId %>"><%=compName%></a> has been submitted!</p>
+								     <p class="text-info">Company: <a title="Click to view company details" href="/RetrieveCompanyServlet?cId=<%=compId %>"><%=compName%></a> has been submitted!</p>
 								   </div>
 								</div>
 							</div>

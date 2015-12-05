@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.search.Document;
 
 import directoryModel.*;
@@ -16,18 +17,18 @@ public class SubmitCompanyServlet extends HttpServlet{
 	
 	final String ALL_COMPANIES_INDEX = "AllCompanies";
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response)throws IOException{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String firstName = request.getParameter("fname").trim();
 		String lastName = request.getParameter("lname").trim();
 		String email = request.getParameter("email").trim();
 		
-		//Extract Company info
+		//Extract Company information
 		String companyName = request.getParameter("companyName").trim();
 		String website = request.getParameter("website").trim();
-		String telephone = request.getParameter("companyPhone").trim();
-		String description = request.getParameter("companyDescription").trim();
+		String telephone = request.getParameter("companyPhone");
+		Text description = new Text(request.getParameter("companyDescription"));
 		String address1 = request.getParameter("companyAddress1").trim();
-		String address2 = request.getParameter("companyAddress2").trim();
+		String address2 = request.getParameter("companyAddress2");
 		String city = request.getParameter("companyCity").trim();
 		String state = request.getParameter("companyState");
 		String zipcode = "" + request.getParameter("companyZip");//convert zipcode to string
@@ -69,8 +70,7 @@ public class SubmitCompanyServlet extends HttpServlet{
 		poc.setEmail(email);
 		comp.setPointOfContact(poc);
 		comp.setTelephone(telephone);
-		Address address = new Address(address1,city,state,zipcode);
-		address.setStreetName2(address2);//set the second line of address
+		Address address = EntityCreator.createAddress(address1,address2, city,state,zipcode);
 		comp.setAddress(address);
 		//build category object with 3 params, type, category name, hierarchy
 		Category primaryCategory = Company.createCategory("Primary",Utility.getCategoryName(primCats),Utility.buildCategoryHierarchy(primCats));
@@ -101,6 +101,8 @@ public class SubmitCompanyServlet extends HttpServlet{
 			getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
 		} catch (ServletException e) {			
 			e.printStackTrace();
+		} catch (IOException e) {
+			response.getWriter().write("Oops Your request could not be complete.");;
 		}		
 	}
 }

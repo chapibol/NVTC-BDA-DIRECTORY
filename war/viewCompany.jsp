@@ -42,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Submit Company</a></li>
-					<li class="active"><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a></li>
+					<li><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a></li>
 				</ul>
 
 				<form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
@@ -65,7 +65,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
+							<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
 								<%
 									Company c = (Company)request.getAttribute("aCompany");
 									PointOfContact poc = c.getPointOfContact();
@@ -80,18 +80,15 @@
 								<h4 class="text-center">Point of Contact Information</h4>
 								<div class="form-group" id="pointOfContact">
 									<p class="text-center">
-										Name:
-										<%=poc.getFirstName() + " " + poc.getLastName()%></p>
+										Name:<%=poc.getFirstName() + " " + poc.getLastName()%></p>
 									<p class="text-center">
-										E-Mail:
-										<%=poc.getEmail()%></p>
+										E-Mail:<%=poc.getEmail()%></p>
 								</div>
 								<hr>
 
 								<h4 class="text-center">Company Information</h4>
 								<div class="form-group" id="companyInformation">
-									<p class="text-center">this div is for printing the Company
-										Info</p>
+									<p class="text-center"><%=c.getDescription().getValue()%></p>
 								</div>
 								<!--Div form group containing Compnay Info-->
 								<hr />
@@ -101,18 +98,16 @@
 								<!-- First -->
 								<h4 class="text-center">Company Primary Sources of Revenue</h4>
 								<div class="row" id="primaryCategory">
-									<p class="text-center">this div is for printing the primary</p>
+									<p class="text-center"><%=c.getPrimaryCategory() %></p>
 								</div>
 								<!--End Row enclosing primary categories-->
 								<hr />
 
 
 								<!-- Second -->
-								<h4 class="text-center">Company Secondary Sources of
-									Revenue</h4>
+								<h4 class="text-center">Company Secondary Sources of Revenue</h4>
 								<div class="row" id="secondaryCategory">
-									<p class="text-center">this div is for printing the
-										secondary</p>
+									<p class="text-center"><%=c.getSecondaryCategory() %></p>
 								</div>
 								<!--End secondary category row-->
 								<hr />
@@ -120,11 +115,9 @@
 
 
 								<!-- Third -->
-								<h4 class="text-center">Company Tertiary Sources of
-									Revenue</h4>
+								<h4 class="text-center">Company Tertiary Sources of	Revenue</h4>
 								<div class="row">
-									<p class="text-center">this div is for printing the company
-										tertiary revenue</p>
+									<p class="text-center"><%=c.getTertiaryCategory()%></p>
 								</div>
 								<!--End tertiary category row-->
 								<hr />
@@ -133,8 +126,10 @@
 								<!-- Company Specialties -->
 								<h4 class="text-center">Specializations</h4>
 								<div class="form-group" id="specializations">
-									<p class="text-center">this div is for printing the company
-										specializations</p>
+									<p class="text-center"><%=c.getSpecialty1()%></p>
+									<p class="text-center"><%=c.getSpecialty2() %></p>
+									<p class="text-center"><%=c.getSpecialty3()%></p>
+									
 								</div>
 								<hr />
 

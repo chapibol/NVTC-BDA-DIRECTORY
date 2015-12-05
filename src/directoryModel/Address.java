@@ -31,12 +31,13 @@ public class Address {
 	@Persistent private String zipcode;
 	
 	public Address(){
-		this("114 Street Name", "city", "state", "20164");
+		this("114 Street Name","Suite 20", "city", "state", "20164");
 		this.stateCode = "VA";
 	}
 	
-	public Address(String streetName, String city, String state, String zipcode){
+	public Address(String streetName,String streeName2, String city, String state, String zipcode){
 		this.streetName = streetName;
+		this.streetName2 = streeName2;
 		this.city = city;
 		this.state = state;
 		this.stateCode = state;

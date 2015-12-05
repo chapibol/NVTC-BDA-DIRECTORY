@@ -1,5 +1,6 @@
 package directoryModel;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Company {
 	@Persistent private String name;	
 	@Persistent private String website;
 	@Persistent private String telephone;
-	@Persistent private String description;	
+	@Persistent private Text description;	
 	@Persistent	private Address companyAddress;	
 	@Persistent private Category primaryCategory;	
 	@Persistent private Category secondaryCategory;	
@@ -32,10 +33,10 @@ public class Company {
 		
 	
 	public Company(){
-		this("company name", "www.example.com", "a description");
+		this("company name", "www.example.com", new Text("Sample Text"));
 	}
 	
-	public Company(String aName, String website, String description){
+	public Company(String aName, String website, Text description){
 		this.name = aName;
 		this.website = website;
 		this.telephone = "555-555-5555";
@@ -88,19 +89,15 @@ public class Company {
 	/**
 	 * @return the description
 	 */
-	public String getDescription() {
-		return description;
+	public Text getDescription() {
+		return this.description;
 	}
 
 	/**
 	 * @param description the description to set
 	 */
-	public void setDescription(String description) throws IllegalArgumentException {
-		if(Utility.isStringDataValid(description)){
-			this.description = description;			
-		}else{
-			throw new IllegalArgumentException("Invalid string input");
-		}
+	public void setDescription(Text description){
+		this.description = description;
 	}
 
 	/**

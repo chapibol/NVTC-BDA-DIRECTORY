@@ -3,6 +3,8 @@ package directoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -84,9 +86,9 @@ public final class Utility {
 			//use a transaction to ensure that the question is saved to the datastore
 			pm.currentTransaction().begin();
 			pm.makePersistent(c);
-			pm.currentTransaction().commit();
 		}
-		finally {			
+		finally {
+			pm.currentTransaction().commit();
 			pm.close();
 		}
 	}
