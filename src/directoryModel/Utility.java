@@ -114,7 +114,8 @@ public final class Utility {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Company> results = null;
 		try {			
-			Query q = pm.newQuery(Company.class);	
+			Query q = pm.newQuery(Company.class);
+			q.setOrdering("name asc");//set ordering
 			results = (List<Company>)q.execute();
 		} catch (Exception e) {
 			//nothing

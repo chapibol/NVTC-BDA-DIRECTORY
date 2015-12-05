@@ -48,7 +48,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Submit Company</a></li>
-					<li><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a></li>
+					<li><a href="browseCompanies.jsp">Browse<span class="sr-only">(current)</span></a></li>
 				</ul>
 
 				<form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
@@ -108,7 +108,7 @@
 							%>
 								
 							</div><!--End of column that controls input size col-md-10 ...-->
-						</div><!--row div within panel-body-->
+						</div>
 
 				
 			</div><!--End of 10 column div with 1 offset-->

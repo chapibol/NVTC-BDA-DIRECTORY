@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+<%@ page import="directoryControls.*"%>
+<%@ page import="directoryModel.*"%>
+<%@ page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -36,7 +41,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Submit Company</a> </li>
-        <li class="active"><a href="browseCompanies.html">Browse<span class="sr-only">(current)</span></a> </li> 
+        <li class="active"><a href="browseCompanies.jsp">Browse<span class="sr-only">(current)</span></a> </li> 
       </ul>     
       
       <form action="/SearchServlet" class="navbar-form navbar-right" role="search" method="post">
@@ -51,7 +56,10 @@
   <!-- /.container-fluid --> 
 </nav>
 <!--End NavBar-->
-
+<%
+		//retrieve results from servlet
+		List<Company> allCompanies = Utility.getAllCompanies();
+%>
 
 
 <div class="container"><!-- Holds all the content in this page -->
@@ -60,19 +68,52 @@
     	<div class="panel panel-default">
           <div class="panel-body">
            <div class="row">
-            <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!--Keeps input fields 10 columns wide within panel body-->           
+            <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1"><!--Keeps input fields 10 columns wide within panel body-->           
 
 				
-				<div class="form-group">
-			    <p class="text-center">Feature Coming Soon</p>
-			    </div>
-                <hr>
+				<div class="row">
+							<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
+							<%
+							if (allCompanies.isEmpty() || allCompanies == null) {//if no reults display error message
+							%>
+									<div class="col-md-8 col-sm-8 col-xs-10 col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
+										<div class="alert alert-danger text-center" role="alert">
+											<p>No Results try again</p>										
+										</div>																		
+									</div>	
+							<%
+							}else{
+							
+								for(Company c: allCompanies){
+									long id = c.getKey().getId();
+									String companyName = c.getName();
+									String descriptionSnippet = Utility.toSnippet(c.getDescription().getValue());
+									String website = c.getWebsite();
+							%>	
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<h3 class="searchHeading">
+											<strong><a href="/RetrieveCompanyServlet?cId=<%=id%>"><%=companyName%></a></strong>
+										</h3>
+										<small><a class="searchUrl" href=<%=website%>><%=website%></a></small><br/>
+										<p><%=descriptionSnippet%><p>
+									</div>								
+								</div>
+								<br/>
+								<br/>
+							<%
+								}
+							}	
+							%>
+								
+							</div><!--End of column that controls input size col-md-10 ...-->
+						</div>
                 
 
 
         
-    </div><!--End of column that controls input size col-md-10 ...-->
-      </div><!--row div within panel-body-->
+		    </div><!--End of column that controls input size col-md-10 ...-->
+		      </div><!--row div within panel-body-->
             
           </div><!--end panel body-->
         </div><!--End Panel Default div-->
