@@ -131,6 +131,8 @@ public class Address {
 
 		
 	public String toString(){
-		return "Address to String";
+		String line1 = "<p class=\"infoGroup\">" + this.getStreetName() + (Utility.isStringDataValid(this.getStreetName2())?", " + this.getStreetName2():"") + "</p>";
+		String line2 = "<p class=\"infoGroup\">"+ this.getCity() + ", " + this.getState() + " " + this.getZipcode() + "</p>";
+		return line1 + line2;
 	}
 }

@@ -82,9 +82,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<p>
-						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: (703) 904-7878 | Fax: (703) 904-8008
+					<p class="infoGroup">
+						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
 					</p>
+					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="text-info">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
 				</div>
 			</div>
 		</div>

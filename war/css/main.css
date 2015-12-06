@@ -21,3 +21,20 @@ body {
 .searchUrl {
 	color: green;
 }
+
+.searchUrl a:visited{
+	color: #600090;
+}
+
+
+.siteLink {
+	color: blue;
+}
+.siteLink:visited {
+	color: #600090;
+}
+
+.infoGroup {
+	margin-bottom :0px;
+	padding-bottom:0px;
+}

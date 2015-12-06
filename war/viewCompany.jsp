@@ -62,93 +62,98 @@
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
 			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1 "><!-- Limits the  -->
-				<div class="panel panel-default">
-					<div class="panel-body">
+				
 						<div class="row">
 							<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
 								<%
 									Company c = (Company)request.getAttribute("aCompany");
 									PointOfContact poc = c.getPointOfContact();
 									Address ad = c.getAddress();
-								%>
-								<div id="companyName" class="text-center">
-									<h1><%=c.getName()%></h1>
-								</div>
-								<hr>
-								<br />
-
-								<h4 class="text-center">Point of Contact Information</h4>
-								<div class="form-group" id="pointOfContact">
-									<p class="text-center">
-										Name:<%=poc.getFirstName() + " " + poc.getLastName()%></p>
-									<p class="text-center">
-										E-Mail:<%=poc.getEmail()%></p>
-								</div>
-								<hr>
-
-								<h4 class="text-center">Company Information</h4>
-								<div class="form-group" id="companyInformation">
-									<p class="text-center"><%=c.getDescription().getValue()%></p>
-								</div>
-								<!--Div form group containing Compnay Info-->
-								<hr />
-
-
-
-								<!-- First -->
-								<h4 class="text-center">Company Primary Sources of Revenue</h4>
-								<div class="row" id="primaryCategory">
-									<p class="text-center"><%=c.getPrimaryCategory() %></p>
-								</div>
-								<!--End Row enclosing primary categories-->
-								<hr />
-
-
-								<!-- Second -->
-								<h4 class="text-center">Company Secondary Sources of Revenue</h4>
-								<div class="row" id="secondaryCategory">
-									<p class="text-center"><%=c.getSecondaryCategory() %></p>
-								</div>
-								<!--End secondary category row-->
-								<hr />
-
-
-
-								<!-- Third -->
-								<h4 class="text-center">Company Tertiary Sources of	Revenue</h4>
-								<div class="row">
-									<p class="text-center"><%=c.getTertiaryCategory()%></p>
-								</div>
-								<!--End tertiary category row-->
-								<hr />
-
-
-								<!-- Company Specialties -->
-								<h4 class="text-center">Specializations</h4>
-								<div class="form-group" id="specializations">
-									<p class="text-center"><%=c.getSpecialty1()%></p>
-									<p class="text-center"><%=c.getSpecialty2() %></p>
-									<p class="text-center"><%=c.getSpecialty3()%></p>
+									String pocName = poc.getFirstName() + " " + poc.getLastName();
+									String pocEmail = poc.getEmail();
+									//get company details
+									String companyName = c.getName();
+									String website = c.getWebsite();
+									String telephone = c.getTelephone();
+									String description = c.getDescription().getValue();
+									String primaryCategory = c.getPrimaryCategory().getCategoryName();
+									String secondaryCategory = c.getSecondaryCategory().getCategoryName();
+									String tertiaryCategory = c.getTertiaryCategory().getCategoryName();
+									String specialty1 = c.getSpecialty1();
+									String specialty2 = c.getSpecialty2();
+									String specialty3 = c.getSpecialty3();
 									
+								%>
+								<br/>
+								<div class="row">
+									<div class="panel panel-default">
+          								<div class="panel-body">
+											<h1 class="text-center"><%=companyName%></h1>
+											<div class="col-md-7 col-sm-12 col-xs-12">
+												<div class="panel panel-primary">
+													<div class="panel-heading text-center">
+													    <h3 class="panel-title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Company Information</h3>
+													</div>
+												   <div class="panel-body text-left">
+												   	 <p class="infoGroup"><strong><span class="glyphicon glyphicon-screenshot"></span> Address</strong></p>								  
+												     <%=ad.toString() %>
+												     <hr/>
+												     <p><strong><span class="glyphicon glyphicon-earphone"></span> Telephone: </strong><%=telephone %></p>
+												     <p><strong><span class="glyphicon glyphicon-globe"></span> Website: </strong><a class="siteLink" href="<%=website %>"><%=website %></a></p>
+												     <hr/>
+												     <p class="infoGroup"><strong><span class="glyphicon glyphicon-usd"></span> Primary Source of Revenue: </strong><%=primaryCategory%></p>
+												     <p class="infoGroup"><strong><span class="glyphicon glyphicon-usd"></span> Secondary Source of Revenue: </strong><%=primaryCategory%></p>
+												     <p class="infoGroup"><strong><span class="glyphicon glyphicon-usd"></span> Tertiary Source of Revenue: </strong><%=primaryCategory%></p>
+												     <br/>
+												     <p class="infoGroup"><strong><span class="glyphicon glyphicon-info-sign"></span> Specialty 1: </strong><%=specialty1%></p>
+												     <p class="infoGroup"><strong><span class="glyphicon glyphicon-info-sign"></span> Specialty 2: </strong><%=specialty2%></p>
+												     <p class="infoGroup"><strong><span class="glyphicon glyphicon-info-sign"></span> Specialty 3: </strong><%=specialty3%></p>										     										   
+												   </div>
+												</div>
+											</div>
+											
+											<div class="col-md-5 col-sm-12 col-xs-12">
+												<div class="panel panel-primary">
+													<div class="panel-heading text-center">
+													    <h3 class="panel-title"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Point Of Contact Information</h3>
+													</div>
+												   <div class="panel-body text-left">								  
+												     <p><strong><span class="glyphicon glyphicon-info-sign"></span> Name: </strong> <%=pocName %></p>
+												     <p><strong><span class="glyphicon glyphicon-envelope"></span> Email: </strong> <%=pocEmail %></p>
+												   </div>
+												</div>
+											</div>																		
+								
+											<div class="row">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<div class="panel panel-primary">
+														<div class="panel-heading text-center">
+														    <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Description</h3>
+														</div>
+													   <div class="panel-body text-justify">								  
+													     <p><%=description%></p>
+													   </div>
+													</div>
+												</div>								
+											</div>
+							
+										</div>
+									</div>
 								</div>
-								<hr />
-
-							</div><!--End of column that controls input size col-md-10 ...-->
-						</div><!--row div within panel-body-->
-
-					</div><!--end panel body-->
-				</div><!--End Panel Default div-->
-			</div><!--End of 10 column div with 1 offset-->
-		</div><!--End Row within container(after navbar)-->
-	</div><!--End container that holds all contents in between navbar and footer-->
+						</div>
+					</div>
+		</div>
+	  </div>
+	</div>
 	<hr>
 	<footer class="text-center">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<p>
-						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: (703) 904-7878 | Fax: (703) 904-8008
+					<p class="infoGroup">
+						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
 					</p>
+					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="text-info">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
 				</div>
 			</div>
 		</div>

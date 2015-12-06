@@ -77,11 +77,12 @@
 							<%
 							if (numberFound == 0 || numberReturned == 0) {//if no reults display error message
 							%>
-									<div class="col-md-8 col-sm-8 col-xs-10 col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
+									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 										<div class="alert alert-danger text-center" role="alert">
-											<p>No results found try again</p>										
+											<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+									  		<span class="sr-only">Error:</span>No results found try again</p>										
 										</div>																		
-									</div>	
+									</div>
 							<%
 							}else{
 							
@@ -119,9 +120,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<p>
-						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: (703) 904-7878 | Fax: (703) 904-8008
+					<p class="infoGroup">
+						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
 					</p>
+					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="text-info">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
 				</div>
 			</div>
 		</div>
