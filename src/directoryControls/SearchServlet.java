@@ -34,8 +34,7 @@ public class SearchServlet extends HttpServlet {
 					companies.add(c);
 				}
 			}catch(JDOObjectNotFoundException j){
-				System.out.println("object not found move to other iteration");
-				
+				System.out.println("object not found move to next iteration");				
 			}finally{
 				continue;
 			}

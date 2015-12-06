@@ -495,9 +495,17 @@
     	}
     }
     
-	
-			        
-			
+    
+    function safariWarnMessage(){
+    	var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+        navigator.userAgent && !navigator.userAgent.match('CriOS');
+    	
+    	if ( isSafari )
+        {
+			window.alert("Safari is not fully supported at this point please use another browser.");
+        }
+    }    
+    window.addEventListener("load",safariWarnMessage,false);		
 </script>
 </head>
 <body>

@@ -66,9 +66,6 @@
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
 			<div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1"><!-- Limits the  -->
-				<div class="row">
-					<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1">
-						<!--Keeps input fields 10 columns wide within panel body-->
 						<%
 							Company c = (Company) request.getAttribute("aCompany");
 							PointOfContact poc = c.getPointOfContact();
@@ -222,8 +219,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

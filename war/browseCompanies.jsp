@@ -59,6 +59,7 @@
 <%
 		//retrieve results from servlet
 		List<Company> allCompanies = Utility.getAllCompanies();
+  		int numberOfCompanies = 0;
 %>
 
 
@@ -76,7 +77,7 @@
 							<%
 							if (allCompanies.isEmpty() || allCompanies == null) {//if no reults display error message
 							%>
-									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+									<div class="col-md-12 col-sm-12 col-xs-12 ">
 										<div class="alert alert-danger text-center" role="alert">
 											<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 									  		<span class="sr-only">Error:</span>No results found</p>										
@@ -84,7 +85,14 @@
 									</div>
 							<%
 							}else{
-							
+								numberOfCompanies = allCompanies.size();
+								%>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12 ">
+										<p class="text-muted" >Companies in the Directory <%=numberOfCompanies %></p>										
+									</div>
+								</div>
+								<%
 								for(Company c: allCompanies){
 									long id = c.getKey().getId();
 									String companyName = c.getName();
@@ -108,11 +116,7 @@
 							%>
 								
 							</div><!--End of column that controls input size col-md-10 ...-->
-						</div>
-                
-
-
-        
+						</div>        
 		    </div><!--End of column that controls input size col-md-10 ...-->
 		      </div><!--row div within panel-body-->
             

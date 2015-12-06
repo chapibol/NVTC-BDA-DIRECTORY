@@ -72,16 +72,17 @@
 
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
-			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!-- Limits the  -->
-				
-						<div class="row">
+			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!-- Limits the  -->						
 							<div class="panel panel-default">
 								<div class="panel-body">
+								<div class="row">
 							<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
+							<div class="row">
+								<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 							<%
 							if (companies.isEmpty() || numberFound == 0 || numberReturned == 0) {//if no reults display error message
 							%>
-									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+									<div class="col-md-12 col-sm-12 col-xs-12 ">
 										<div class="alert alert-danger text-center" role="alert">
 											<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 									  		<span class="sr-only">Error:</span>No results found try again</p>										
@@ -89,7 +90,13 @@
 									</div>
 							<%
 							}else{
-							
+								%>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<small><p class="text-muted" >Results <%=numberFound %> | Showing <%=numberReturned %></p></small>										
+									</div>
+								</div>
+								<%
 								for(Company c: companies){
 									long id = c.getKey().getId();
 									String companyName = c.getName();
@@ -97,7 +104,7 @@
 									String website = c.getWebsite();
 							%>	
 								<div class="row">
-									<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1">
+									<div class="col-md-12 col-sm-12 col-xs-12">
 										<h3 class="searchHeading">
 											<strong><a href="/RetrieveCompanyServlet?cId=<%=id%>"><%=companyName%></a></strong>
 										</h3>
@@ -111,11 +118,14 @@
 								}
 							}	
 							%>
+							</div>
+							</div>
 								
 							</div><!--End of column that controls input size col-md-10 ...-->
+						</div><!-- End row within panel body -->
 						</div>
 				     </div>
-				</div>
+			
 			</div><!--End of 10 column div with 1 offset-->
 		</div><!--End Row within container(after navbar)-->
 	</div><!--End container that holds all contents in between navbar and footer-->
