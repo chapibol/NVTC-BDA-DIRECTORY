@@ -2,6 +2,7 @@
 <%@ page import="directoryControls.*"%>
 <%@ page import="directoryModel.*"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="com.google.appengine.api.search.*"%>
 
 <!DOCTYPE html>
@@ -64,18 +65,21 @@
 	<%
 		//retrieve results from servlet
 		Results<ScoredDocument> results = (Results<ScoredDocument>)request.getAttribute("searchResults");
+		List<Company> companies = (ArrayList<Company>)request.getAttribute("companies");
 		long numberFound = results.getNumberFound();
 		int numberReturned = results.getNumberReturned();//total number returned
 	%>
 
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
-			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1 "><!-- Limits the  -->
+			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!-- Limits the  -->
 				
 						<div class="row">
+							<div class="panel panel-default">
+								<div class="panel-body">
 							<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><!--Keeps input fields 10 columns wide within panel body-->
 							<%
-							if (numberFound == 0 || numberReturned == 0) {//if no reults display error message
+							if (companies.isEmpty() || numberFound == 0 || numberReturned == 0) {//if no reults display error message
 							%>
 									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 										<div class="alert alert-danger text-center" role="alert">
@@ -86,14 +90,14 @@
 							<%
 							}else{
 							
-								for(ScoredDocument d: results){
-									String id = d.getId();
-									String companyName = d.getOnlyField("companyName").getAtom();
-									String descriptionSnippet = Utility.toSnippet(d.getOnlyField("companyDescription").getText());
-									String website = d.getOnlyField("website").getText();
+								for(Company c: companies){
+									long id = c.getKey().getId();
+									String companyName = c.getName();
+									String descriptionSnippet = Utility.toSnippet(c.getDescription().getValue());
+									String website = c.getWebsite();
 							%>	
 								<div class="row">
-									<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-md-offset-1 col-md-offset-1">
+									<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1">
 										<h3 class="searchHeading">
 											<strong><a href="/RetrieveCompanyServlet?cId=<%=id%>"><%=companyName%></a></strong>
 										</h3>
@@ -110,8 +114,8 @@
 								
 							</div><!--End of column that controls input size col-md-10 ...-->
 						</div>
-
-				
+				     </div>
+				</div>
 			</div><!--End of 10 column div with 1 offset-->
 		</div><!--End Row within container(after navbar)-->
 	</div><!--End container that holds all contents in between navbar and footer-->
@@ -121,9 +125,9 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<p class="infoGroup">
-						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
+						<a href="http://www.nvtc.org" class="siteLink">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
 					</p>
-					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="text-info">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
+					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="siteLink">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
 				</div>
 			</div>
 		</div>

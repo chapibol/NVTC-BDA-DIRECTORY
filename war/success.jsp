@@ -61,7 +61,7 @@
 	<!-- Retrieve object for later displaying of its info -->
 	<div class="container"><!-- Holds all the content in this page -->
 		<div class="row">
-			<div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 "><!-- Limits the  -->				
+			<div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1"><!-- Limits the  -->				
 						<div class="row">
 							<div class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
 								<div class="panel panel-success">
@@ -83,9 +83,9 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<p class="infoGroup">
-						<a href="http://www.nvtc.org" class="text-info">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
+						<a href="http://www.nvtc.org" class="siteLink">Northern Virginia Technology Council</a> | 2214 Rock Hill Road, Suite 300, Herndon, VA 20170 | Phone: 703-904-7878 | Fax: 703-904-8008
 					</p>
-					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="text-info">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
+					<p class="infoGroup">Developed by <a href="http://www.gmu.edu" class="siteLink">George Mason University</a> IT 493 Capstone team, December 2015 | Franz Prowant, Luis Velasco, Raj Sheth, Vineet Jindal</p>
 				</div>
 			</div>
 		</div>

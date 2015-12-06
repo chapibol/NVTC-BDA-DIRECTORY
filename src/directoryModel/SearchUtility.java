@@ -9,6 +9,8 @@ import com.google.appengine.api.search.GetResponse;
 import com.google.appengine.api.search.Index;
 import com.google.appengine.api.search.IndexSpec;
 import com.google.appengine.api.search.SearchServiceFactory;
+import com.google.appengine.api.search.SortExpression;
+import com.google.appengine.api.search.SortOptions;
 import com.google.appengine.api.search.PutException;
 import com.google.appengine.api.search.QueryOptions;
 import com.google.appengine.api.search.Results;
@@ -110,11 +112,19 @@ public class SearchUtility {
 	 * @return
 	 */
 	public static  Results<ScoredDocument> searchFor(String queryStr, String indexName){		
+		// Build the SortOptions with 2 sort keys
+	    SortOptions sortOptions = SortOptions.newBuilder()
+	        .addSortExpression(SortExpression.newBuilder()
+	            .setExpression("companyName")
+	            .setDirection(SortExpression.SortDirection.ASCENDING)
+	            .setDefaultValue("companyName"))
+	            .setLimit(1000).build();
+		
 		// Build the QueryOptions
 	    QueryOptions options = QueryOptions.newBuilder()
-	        .setLimit(40)
-	        .setFieldsToReturn("companyName","website","companyDescription")
-	        .setFieldsToSnippet("companyDescription")//appears to not be working at this point (12/3/2015)
+	        .setLimit(100)
+	        .setFieldsToReturn("companyName")
+	        .setSortOptions(sortOptions)
 	        .build();
 
 	    // A query string

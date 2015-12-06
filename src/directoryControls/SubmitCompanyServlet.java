@@ -93,8 +93,6 @@ public class SubmitCompanyServlet extends HttpServlet{
 		Document doc = SearchUtility.createCompanyDocument(comp);
 		//add doc to AllCompanies Index
 		SearchUtility.IndexADocument(ALL_COMPANIES_INDEX, doc);
-//		System.out.println("Doc ID: " + doc.getId() + "\n"//testing code
-//				+ "Entity ID: " + comp.getKey().getId());
 		 request.setAttribute("submittedCompanyName", comp.getName());//
 		 request.setAttribute("companyId", comp.getKey().getId());//send the id also to form a link
 		 try {

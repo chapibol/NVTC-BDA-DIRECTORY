@@ -116,6 +116,7 @@ public final class Utility {
 		try {			
 			Query q = pm.newQuery(Company.class);
 			q.setOrdering("name asc");//set ordering
+			q.setDatastoreReadTimeoutMillis(4000);
 			results = (List<Company>)q.execute();
 		} catch (Exception e) {
 			//nothing
